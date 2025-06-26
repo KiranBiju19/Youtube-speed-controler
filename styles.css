@@ -1,0 +1,164 @@
+/* Speed Notification Overlay */
+#speed-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  pointer-events: none;
+  animation: speedNotificationShow 0.3s ease-out;
+}
+
+.speed-notification-content {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.speed-icon {
+  font-size: 24px;
+  animation: speedIconPulse 0.6s ease-in-out;
+}
+
+.speed-text {
+  font-size: 28px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+@keyframes speedNotificationShow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes speedIconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Floating Speed Widget */
+#youtube-speed-widget {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9998;
+  cursor: move;
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+
+#youtube-speed-widget:hover {
+  opacity: 1 !important;
+}
+
+.speed-widget-content {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  min-width: 80px;
+  text-align: center;
+}
+
+.speed-display {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.speed-controls {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.speed-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.speed-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.speed-btn:active {
+  transform: scale(0.95);
+}
+
+/* Hide widget when not on watch page */
+body:not([data-page-type="watch"]) #youtube-speed-widget {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #youtube-speed-widget {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .speed-widget-content {
+    padding: 10px;
+  }
+  
+  .speed-display {
+    font-size: 16px;
+  }
+  
+  .speed-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+}
+
+/* Animation for speed changes */
+.speed-widget-content.speed-changed {
+  animation: speedWidgetPulse 0.3s ease-out;
+}
+
+@keyframes speedWidgetPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
